@@ -188,6 +188,7 @@ func (t *transferTaskExecutorBase) recordWorkflowStarted(
 		SearchAttributes:   searchAttributes,
 	}
 
+	// todo: add a new method to visibility manager saying RecordUnitializedWorkflowExecution
 	return t.visibilityMgr.RecordWorkflowExecutionStarted(ctx, request)
 }
 

@@ -706,6 +706,8 @@ func (v *esVisibilityStore) checkProducer() {
 	}
 }
 
+// implement func getUninitializedWorkflowMessage
+
 func getVisibilityMessage(
 	domainID string,
 	wid,

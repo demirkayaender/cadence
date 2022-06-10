@@ -208,6 +208,7 @@ func (p *indexProcessor) addMessageToES(indexMsg *indexer.Message, kafkaMsg mess
 		Version:     indexMsg.GetVersion(),
 	}
 	switch indexMsg.GetMessageType() {
+	// todo: Add create
 	case indexer.MessageTypeIndex:
 		keyToKafkaMsg = fmt.Sprintf("%v-%v", kafkaMsg.Partition(), kafkaMsg.Offset())
 		doc := p.generateESDoc(indexMsg, keyToKafkaMsg)

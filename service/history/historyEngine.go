@@ -657,7 +657,13 @@ func (e *historyEngineImpl) startWorkflowHelper(
 		if err != nil {
 			return nil, err
 		}
+	} else {
+		// if "create" optype isn't supported, we know here that the workflow didn't
+		// have a previous mutable state. you can call "index" here
 	}
+
+	// todo: maybe add the visibility record here
+	// e.visibilityMgr.RecordUninitializedWorkflowExecution()
 
 	err = e.addStartEventsAndTasks(
 		curMutableState,
@@ -678,6 +684,9 @@ func (e *historyEngineImpl) startWorkflowHelper(
 	if err != nil {
 		return nil, err
 	}
+
+	// visibility record should be called BEFORE here
+
 	historySize, err := wfContext.PersistStartWorkflowBatchEvents(ctx, newWorkflowEventsSeq[0])
 	if err != nil {
 		return nil, err

@@ -169,6 +169,7 @@ type (
 	}
 
 	// GenericBulkableAddRequest a struct to hold a bulk request
+	// todo: edit isDelete with actionType supporting index, delete, and create
 	GenericBulkableAddRequest struct {
 		Index       string
 		Type        string

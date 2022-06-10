@@ -537,6 +537,8 @@ func (v *v6BulkProcessor) Add(request *GenericBulkableAddRequest) {
 			VersionType(request.VersionType).
 			Version(request.Version)
 	} else {
+		// add another else if for "create"
+		// add action type "create" in that message; looks like the default is index
 		req = elastic.NewBulkIndexRequest().
 			Index(request.Index).
 			Type(request.Type).

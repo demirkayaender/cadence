@@ -38,6 +38,8 @@ const (
 	TaskList      = "TaskList"
 	IsCron        = "IsCron"
 	NumClusters   = "NumClusters"
+	// add Initialized key here
+	// don't add if index only partially replaces the record
 
 	KafkaKey = "KafkaKey"
 )
