@@ -476,7 +476,11 @@ func FailoverActivity(ctx context.Context, params *FailoverActivityParams) (*Fai
 		_, err := frontendClient.UpdateDomain(ctx, updateRequest)
 		if err != nil {
 			failedDomains = append(failedDomains, domain)
-		} else {
+		} else if err == errDomainDeprecated {
+			// log that domain is deprecated
+			logger.Info("Domain is deprecated", zap.String("domain", domain))
+		}
+		else {
 			successDomains = append(successDomains, domain)
 		}
 	}

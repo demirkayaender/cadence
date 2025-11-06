@@ -417,6 +417,12 @@ func (d *handlerImpl) UpdateDomain(
 	if err != nil {
 		return nil, err
 	}
+
+    // check if domain is deprecated
+	if updateRequest.Status == types.DomainStatusDeprecated {
+		return nil, errDomainDeprecated
+	}
+	
 	notificationVersion := metadata.NotificationVersion
 	currentDomainState, err := d.domainManager.GetDomain(ctx, &persistence.GetDomainRequest{Name: updateRequest.GetName()})
 	if err != nil {
